@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SonarLintProjectSettings">
+    <option name="moduleMapping">
+      <map>
+        <entry key="OClick.services" value="OClick.main" />
+        <entry key="OClick.services.api-gateway" value="OClick.services.gateway" />
+      </map>
+    </option>
+  </component>
+</project>
