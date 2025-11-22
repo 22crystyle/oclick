@@ -1,19 +1,8 @@
-plugins {
-    id("java")
+allprojects {
+    group = "org.oclick.libs"
+    version = "unspecified"
 }
 
-group = "org.oclick"
-version = "unspecified"
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-tasks.test {
-    useJUnitPlatform()
+subprojects {
+    apply(plugin = "java")
 }

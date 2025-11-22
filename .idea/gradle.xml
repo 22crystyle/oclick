@@ -26,16 +26,14 @@
             <option value="$PROJECT_DIR$/libs/keycloak-provider" />
             <option value="$PROJECT_DIR$/libs/shared" />
             <option value="$PROJECT_DIR$/platform" />
-            <option value="$PROJECT_DIR$/platform/main" />
-            <option value="$PROJECT_DIR$/platform/main/config-server" />
+            <option value="$PROJECT_DIR$/platform/config-server" />
             <option value="$PROJECT_DIR$/platform/test" />
             <option value="$PROJECT_DIR$/services" />
-            <option value="$PROJECT_DIR$/services/main" />
-            <option value="$PROJECT_DIR$/services/main/ai" />
-            <option value="$PROJECT_DIR$/services/main/api-gateway" />
-            <option value="$PROJECT_DIR$/services/main/auth-service" />
-            <option value="$PROJECT_DIR$/services/main/eureka-server" />
-            <option value="$PROJECT_DIR$/services/main/shell" />
+            <option value="$PROJECT_DIR$/services/ai" />
+            <option value="$PROJECT_DIR$/services/api-gateway" />
+            <option value="$PROJECT_DIR$/services/auth-service" />
+            <option value="$PROJECT_DIR$/services/eureka-server" />
+            <option value="$PROJECT_DIR$/shell" />
           </set>
         </option>
       </GradleProjectSettings>
