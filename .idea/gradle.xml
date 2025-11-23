@@ -24,15 +24,29 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/libs" />
             <option value="$PROJECT_DIR$/libs/keycloak-provider" />
+            <option value="$PROJECT_DIR$/libs/provider-contracts" />
+            <option value="$PROJECT_DIR$/libs/provider-contracts/jobboard-api" />
+            <option value="$PROJECT_DIR$/libs/provider-contracts/llm-api" />
+            <option value="$PROJECT_DIR$/libs/provider-contracts/vectordb-api" />
             <option value="$PROJECT_DIR$/libs/shared" />
             <option value="$PROJECT_DIR$/platform" />
+            <option value="$PROJECT_DIR$/platform/api-gateway" />
             <option value="$PROJECT_DIR$/platform/config-server" />
-            <option value="$PROJECT_DIR$/platform/test" />
+            <option value="$PROJECT_DIR$/platform/eureka-server" />
+            <option value="$PROJECT_DIR$/providers" />
+            <option value="$PROJECT_DIR$/providers/jobboards" />
+            <option value="$PROJECT_DIR$/providers/jobboards/hh-provider" />
+            <option value="$PROJECT_DIR$/providers/llm-backends" />
+            <option value="$PROJECT_DIR$/providers/llm-backends/ollama-provider" />
+            <option value="$PROJECT_DIR$/providers/vectordb" />
+            <option value="$PROJECT_DIR$/providers/vectordb/qdrant-provider" />
             <option value="$PROJECT_DIR$/services" />
-            <option value="$PROJECT_DIR$/services/ai" />
-            <option value="$PROJECT_DIR$/services/api-gateway" />
-            <option value="$PROJECT_DIR$/services/auth-service" />
-            <option value="$PROJECT_DIR$/services/eureka-server" />
+            <option value="$PROJECT_DIR$/services/ai-service" />
+            <option value="$PROJECT_DIR$/services/response-agent" />
+            <option value="$PROJECT_DIR$/services/subscription-manager" />
+            <option value="$PROJECT_DIR$/services/user-profile" />
+            <option value="$PROJECT_DIR$/services/vacancy-processor" />
+            <option value="$PROJECT_DIR$/services/workflow-orchestrator" />
             <option value="$PROJECT_DIR$/shell" />
           </set>
         </option>

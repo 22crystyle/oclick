@@ -3,6 +3,7 @@
   <component name="SonarLintProjectSettings">
     <option name="moduleMapping">
       <map>
+        <entry key="OClick.libs.contracts" value="OClick.libs.providers-api" />
         <entry key="OClick.services" value="OClick.main" />
         <entry key="OClick.services.api-gateway" value="OClick.services.gateway" />
       </map>

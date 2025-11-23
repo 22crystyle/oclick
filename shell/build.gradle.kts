@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "org.oclick"
+group = "org.oclick.shell"
 version = "unspecified"
 
 repositories {
