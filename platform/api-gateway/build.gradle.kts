@@ -1,19 +1,10 @@
-plugins {
-    id("java")
-}
-
 group = "org.oclick.platform.gateway"
 version = "unspecified"
 
-repositories {
-    mavenCentral()
+plugins {
+    id("buildlogic.java-service-conventions")
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-tasks.test {
-    useJUnitPlatform()
+    implementation(libs.spring.cloud.starter.gateway)
 }

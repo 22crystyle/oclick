@@ -1,0 +1,29 @@
+server:
+  port: 1024
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ai-service
+          uri: lb://ai-service
+          predicates:
+            - Path=/ai/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: \${KEYCLOAK_ISSUER_URI:http://localhost:8081/realms/oclick}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: \${EUREKA_URI:http://localhost:8761/eureka}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.security: TRACE
+    reactor.netty.http.client: TRACE
