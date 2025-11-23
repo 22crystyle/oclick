@@ -3,7 +3,7 @@ spring:
     name: eureka-server
 
 server:
-  port: 2001
+  port: 8761
 
 eureka:
   server:
@@ -15,4 +15,4 @@ eureka:
     fetch-registry: false
 management:
   server:
-    port: 2002
+    port: 8791
