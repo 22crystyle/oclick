@@ -1,19 +1,6 @@
 plugins {
-    id("java")
+    id("buildlogic.java-shell-conventions")
 }
 
 group = "org.oclick.shell"
 version = "unspecified"
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
