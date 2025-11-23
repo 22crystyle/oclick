@@ -21,9 +21,7 @@ include(
     "services",
     "services:ai-service",
     "services:user-profile",
-    "services:subscription-manager",
-    "services:vacancy-processor",
-    "services:response-agent",
+    "services:vacancy-service",
     "services:workflow-orchestrator"
 )
 
