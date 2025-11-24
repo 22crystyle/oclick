@@ -1,6 +1,6 @@
 [versions]
 lombok-plugin = "8.14"
-spring-boot-plugin = "3.4.5"
+spring-boot = "4.0.0"
 spring-dependency-plugin = "1.1.7"
 openapi-plugin = "1.9.0"
 spring-cloud = "4.3.0"
@@ -11,7 +11,7 @@ spring-cloud-starter-eureka-server = { group = "org.springframework.cloud", name
 spring-cloud-starter-gateway = { group = "org.springframework.cloud", name = "spring-cloud-starter-gateway", version.ref = "spring-cloud" }
 
 [plugins]
-spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot-plugin" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-dependency = { id = "io.spring.dependency-management", version.ref = "spring-dependency-plugin" }
 lombok = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
 openapi = { id = "org.springdoc.openapi-gradle-plugin", version.ref = "openapi-plugin" }

@@ -1,6 +1,9 @@
 # OClick
+
 Проект разделенный на микросервисы используя gradle модули для автоматизированных откликов с системой плагинов.
+
 ## Архитектура
+
 * **buildSrc** - *конвенциональные плагины и общие зависимости для всего проекта*
 * **libs** - *библиотеки*
     * `keycloak-provider` - *SPI для брокера сообщений*
@@ -29,13 +32,14 @@
 
 ## Key Technologies
 
-*   **Backend:** Java 21, Spring Boot, Spring Cloud (Eureka, Gateway)
-*   **Build Tool:** Gradle with custom convention plugins
-*   **API Documentation:** OpenAPI (Swagger)
-*   **Containerization:** Docker
-*   **AI:** Integrations with LLMs (Ollama) and vector databases (Qdrant)
+* **Backend:** Java 21, Spring Boot, Spring Cloud (Eureka, Gateway)
+* **Build Tool:** Gradle with custom convention plugins
+* **API Documentation:** OpenAPI (Swagger)
+* **Containerization:** Docker
+* **AI:** Integrations with LLMs (Ollama) and vector databases (Qdrant)
 
 ## Workflow
+
 ```mermaid
 sequenceDiagram
     title Рабочий процесс обработки вакансий
