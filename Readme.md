@@ -19,6 +19,7 @@
 * **providers** - *Реализации системы плагинов*
     * **jobboards**
         * `hh-provider`
+        * `superjob-provider`
     * **llm-backends**
         * `ollama-provider`
     * **vectordb**
