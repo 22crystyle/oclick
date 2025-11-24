@@ -42,10 +42,8 @@
             <option value="$PROJECT_DIR$/providers/vectordb/qdrant-provider" />
             <option value="$PROJECT_DIR$/services" />
             <option value="$PROJECT_DIR$/services/ai-service" />
-            <option value="$PROJECT_DIR$/services/response-agent" />
-            <option value="$PROJECT_DIR$/services/subscription-manager" />
             <option value="$PROJECT_DIR$/services/user-profile" />
-            <option value="$PROJECT_DIR$/services/vacancy-processor" />
+            <option value="$PROJECT_DIR$/services/vacancy-service" />
             <option value="$PROJECT_DIR$/services/workflow-orchestrator" />
             <option value="$PROJECT_DIR$/shell" />
           </set>
