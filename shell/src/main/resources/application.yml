@@ -9,3 +9,4 @@ keycloak:
     baseUrl: https://auth.xqxq.site
     realm: oclick
     clientId: spring-shell
+    clientSecret: LMe0wfMjaWFkLOBL1qRyjZFvSfCgjpXZ

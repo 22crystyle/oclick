@@ -6,20 +6,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "keycloak.client")
 public class KeycloakProperties {
-    private static final String REALM_URL = "/realms/";
+    private static final String REALMS_PATH = "realms";
+    private static final String BROKER_PATH = "broker";
     private String baseUrl;
     private String realm;
     private String clientId;
+    private String clientSecret;
 
     public String getDeviceAuthEndpoint() {
-        return baseUrl + REALM_URL + realm + "/protocol/openid-connect/auth/device";
+        return baseUrl + "/" + REALMS_PATH + "/" + realm + "/protocol/openid-connect/auth/device";
     }
 
     public String getTokenEndpoint() {
-        return baseUrl + REALM_URL + realm + "/protocol/openid-connect/token";
+        return baseUrl + "/" + REALMS_PATH + "/" + realm + "/protocol/openid-connect/token";
     }
 
-    public String getIdentityProviderEndpoint() {
-        return baseUrl + REALM_URL + realm + "/broker";
+    public String getJobboardResourceEndpoint(String jobboardAlias) {
+        return baseUrl + "/" + BROKER_PATH + "/" + jobboardAlias;
     }
 }
