@@ -2,8 +2,14 @@
   <dictionary name="project">
     <words>
       <w>buildlogic</w>
+      <w>initdb</w>
+      <w>jobboards</w>
       <w>oclick</w>
       <w>pgdata</w>
+      <w>qdrant</w>
+      <w>superjob</w>
+      <w>vectordb</w>
+      <w>xforwarded</w>
     </words>
   </dictionary>
 </component>

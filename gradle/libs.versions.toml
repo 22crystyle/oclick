@@ -1,14 +1,18 @@
 [versions]
 lombok-plugin = "8.14"
-spring-boot = "4.0.0"
+spring-boot = "3.5.8"
 spring-dependency-plugin = "1.1.7"
 openapi-plugin = "1.9.0"
 spring-cloud = "4.3.0"
+jline = "3.30.6"
 
 [libraries]
 # --- Spring Cloud ---
 spring-cloud-starter-eureka-server = { group = "org.springframework.cloud", name = "spring-cloud-starter-netflix-eureka-server", version.ref = "spring-cloud" }
 spring-cloud-starter-gateway = { group = "org.springframework.cloud", name = "spring-cloud-starter-gateway", version.ref = "spring-cloud" }
+
+# --- Shell ---
+jline = { group = "org.jline", name = "jline-terminal-jna", version.ref = "jline" }
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

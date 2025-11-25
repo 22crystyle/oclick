@@ -2,3 +2,10 @@ spring:
   shell:
     interactive:
       enabled: true
+  main:
+    web-application-type: none
+keycloak:
+  client:
+    baseUrl: https://auth.xqxq.site
+    realm: oclick
+    clientId: spring-shell
