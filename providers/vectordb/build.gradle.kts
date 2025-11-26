@@ -5,4 +5,5 @@ allprojects {
 
 subprojects {
     apply(plugin = "java")
+    apply(plugin = "buildlogic.spring-plugin-conventions")
 }

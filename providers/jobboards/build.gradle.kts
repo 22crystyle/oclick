@@ -5,6 +5,7 @@ allprojects {
 
 subprojects {
     apply(plugin = "java")
+    apply(plugin = "buildlogic.spring-plugin-conventions")
 
     dependencies {
         add("implementation", project(":libs:provider-contracts:jobboard-api"))
