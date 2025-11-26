@@ -5,6 +5,14 @@ plugins {
 
 rootProject.name = "OClick"
 
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
+
 include("shell")
 
 include(

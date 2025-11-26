@@ -1,5 +1,3 @@
-import gradle.kotlin.dsl.accessors._9d3e45433fbb9626835e83aa6034b0bc.dependencyManagement
-
 plugins {
     `java-library`
     id("io.freefair.lombok")
