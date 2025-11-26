@@ -2,6 +2,7 @@
 **/build/
 **/.gradle/
 **/docs/
+**/*.jar
 docker/kafka
 
 ### IntelliJ IDEA ###
