@@ -1,0 +1,17 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
+    registry-fetch-interval-seconds: 10
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 5
+management:
+  server:
+    port: 8081
+spring:
+  application:
+    name: user-profile
+server:
+  port: ${USER_PROFILE_PORT}
