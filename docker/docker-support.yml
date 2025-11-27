@@ -67,3 +67,6 @@ networks:
   oclick-net:
     name: oclick-net
     driver: bridge
+  pg_net:
+    name: pg_net
+    driver: bridge
