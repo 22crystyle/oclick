@@ -15,4 +15,4 @@ eureka:
     fetch-registry: false
 management:
   server:
-    port: 8791
+    port: 8081
