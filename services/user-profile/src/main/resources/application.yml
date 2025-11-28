@@ -2,7 +2,7 @@ eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_URL}
-    registry-fetch-interval-seconds: 10
+    registry-fetch-interval-seconds: 30
   instance:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 2
@@ -14,4 +14,4 @@ spring:
   application:
     name: user-profile
 server:
-  port: ${USER_PROFILE_PORT}
+  port: ${USER_PROFILE_PORT:1026}

@@ -8,6 +8,7 @@
       <w>oclick</w>
       <w>pgdata</w>
       <w>qdrant</w>
+      <w>resourceserver</w>
       <w>superjob</w>
       <w>vectordb</w>
       <w>xforwarded</w>

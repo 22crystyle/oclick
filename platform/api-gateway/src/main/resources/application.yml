@@ -1,29 +1,37 @@
 server:
   port: 1024
-
+management:
+  server:
+    port: 8081
 spring:
   application:
     name: api-gateway
   cloud:
     gateway:
-      routes:
-        - id: ai-service
-          uri: lb://ai-service
-          predicates:
-            - Path=/ai/**
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: \${KEYCLOAK_ISSUER_URI:http://localhost:8081/realms/oclick}
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+            - id: user-profile
+              uri: lb://user-profile
+              predicates:
+                - Path=/api/v1/user/**
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: \${EUREKA_URI:http://localhost:8761/eureka}
+    service-url:
+      defaultZone: ${EUREKA_URL:http://192.168.0.105:8761/eureka}
+    registry-fetch-interval-seconds: 30
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
 
 logging:
   level:
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.security: TRACE
-    reactor.netty.http.client: TRACE
+    org.springframework.cloud.gateway: INFO
+    org.springframework.security: INFO
+    reactor.netty.http.client: INFO
