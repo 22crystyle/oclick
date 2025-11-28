@@ -10,7 +10,7 @@ pf4j-spring = "0.10.0"
 
 [libraries]
 # --- Spring Boot ---
-spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot"}
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
 spring-boot-starter-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux", version.ref = "spring-boot" }
 
 # --- Spring Cloud ---
