@@ -1,11 +1,14 @@
+server:
+  port: ${VACANCY_SERVICE_PORT:1026}
 eureka:
   client:
-    enabled: false
+    service-url:
+      defaultZone: http://192.168.0.105:8761/eureka
+    registry-fetch-interval-seconds: 30
+  instance:
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
 spring:
-  cloud:
-    loadbalancer:
-      enabled: false
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
-      - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+  application:
+    name: vacancy-service

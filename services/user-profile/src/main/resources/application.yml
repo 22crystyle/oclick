@@ -14,4 +14,4 @@ spring:
   application:
     name: user-profile
 server:
-  port: ${USER_PROFILE_PORT:1026}
+  port: ${USER_PROFILE_PORT:1025}
