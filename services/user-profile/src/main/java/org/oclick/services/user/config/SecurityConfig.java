@@ -1,4 +1,4 @@
-package org.oclick.services.user;
+package org.oclick.services.user.config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
@@ -12,12 +12,17 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    private static final String[] WHITELIST = {
+            "/actuator/**"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(new GatewayHeaderRequestMatcher("X-Internal-Gateway", "true")).permitAll()
+                        .requestMatchers(WHITELIST).permitAll()
                         .anyRequest().denyAll()
                 ).build();
     }

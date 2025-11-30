@@ -17,7 +17,18 @@ spring:
                 - Path=/api/v1/user/**
               filters:
                 - AddRequestHeader=X-Internal-Gateway, true
-
+            - id: vacancy-service
+              uri: lb://vacancy-service
+              predicates:
+                - Path=/api/v1/vacancy/**
+              filters:
+                - AddRequestHeader=X-Internal-Gateway, true
+            - id: ai-service
+              uri: lb://ai-service
+              predicates:
+                - Path=/api/v1/ai/**
+              filters:
+                - AddRequestHeader=X-Internal-Gateway, true
 eureka:
   client:
     service-url:
@@ -27,7 +38,6 @@ eureka:
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 30
     lease-expiration-duration-in-seconds: 90
-
 logging:
   level:
     org.springframework.cloud.gateway: INFO

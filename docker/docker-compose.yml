@@ -1,3 +1,4 @@
 include:
   - docker-support.yml
+  - docker-platform.yml
   - docker-services.yml
