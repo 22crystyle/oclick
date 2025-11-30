@@ -1,4 +1,4 @@
-package org.oclick.services.user.config;
+package org.oclick.services.ai.config;
 
 import org.oclick.libs.shared.security.GatewayHeaderRequestMatcher;
 import org.springframework.context.annotation.Bean;

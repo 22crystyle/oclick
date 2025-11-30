@@ -6,8 +6,8 @@ group = "org.oclick.libs.shared"
 version = "unspecified"
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation(libs.spring.boot.starter.security)
+    implementation(libs.spring.boot.starter.web)
 }
 
 tasks.test {

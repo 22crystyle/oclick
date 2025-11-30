@@ -1,5 +1,5 @@
 [versions]
-lombok-plugin = "8.14"
+lombok-plugin = "9.1.0"
 spring-boot = "4.0.0"
 spring-dependency-plugin = "1.1.7"
 openapi-plugin = "1.9.0"
@@ -7,11 +7,13 @@ spring-cloud = "5.0.0"
 jline = "3.30.6"
 pf4j = "3.13.0"
 pf4j-spring = "0.10.0"
+shell = "4.0.0-M1"
 
 [libraries]
 # --- Spring Boot ---
 spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
 spring-boot-starter-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux", version.ref = "spring-boot" }
+spring-boot-starter-security = { group = "org.springframework.boot", name = "spring-boot-starter-security", version.ref = "spring-boot" }
 
 # --- Spring Cloud ---
 spring-cloud-starter-eureka-server = { group = "org.springframework.cloud", name = "spring-cloud-starter-netflix-eureka-server", version.ref = "spring-cloud" }
@@ -20,6 +22,7 @@ spring-cloud-starter-loadbalancer = { module = "org.springframework.cloud:spring
 resilience4j = { group = "org.springframework.cloud", name = "spring-cloud-starter-circuitbreaker-reactor-resilience4j", version.ref = "spring-cloud" }
 
 # --- Shell ---
+spring-shell = { group = "org.springframework.shell", name = "spring-shell-starter", version.ref = "shell"}
 jline = { group = "org.jline", name = "jline-terminal-jna", version.ref = "jline" }
 
 # --- Plugins ---

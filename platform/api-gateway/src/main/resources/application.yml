@@ -14,9 +14,10 @@ spring:
             - id: user-profile
               uri: lb://user-profile
               predicates:
-                - Path=/api/v1/user/**
+                - Path=/api/{version}/users/**
               filters:
                 - AddRequestHeader=X-Internal-Gateway, true
+                - RewritePath=/api/(?<version>v\d+)/users(?<segment>.*), /api/$\{version}$\{segment}
             - id: vacancy-service
               uri: lb://vacancy-service
               predicates:
@@ -32,7 +33,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_URL:http://192.168.0.105:8761/eureka}
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
     registry-fetch-interval-seconds: 30
   instance:
     prefer-ip-address: true
