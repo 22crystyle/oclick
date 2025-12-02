@@ -1,4 +1,4 @@
-package org.oclick.shell.config;
+package org.oclick.shell.support.model;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

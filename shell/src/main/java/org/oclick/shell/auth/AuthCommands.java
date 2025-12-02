@@ -1,27 +1,29 @@
-package org.oclick.shell;
+package org.oclick.shell.auth;
 
+import lombok.Getter;
 import org.jline.terminal.Terminal;
-import org.oclick.shell.config.KeycloakProperties;
 import org.oclick.shell.dto.DeviceAuthResponse;
 import org.oclick.shell.dto.TokenResponse;
+import org.oclick.shell.support.exception.ShellTokenPendingException;
+import org.oclick.shell.support.model.KeycloakProperties;
+import org.oclick.shell.support.model.RestKeys;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
-import org.springframework.shell.standard.ShellComponent;
-import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.command.annotation.Command;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
-@ShellComponent
+@Command(
+        command = "auth",
+        group = "Auth"
+)
 public class AuthCommands {
-    private static final String CLIENT_ID_KEY = "client_id";
-    private static final String CLIENT_SECRET_KEY = "client_secret";
-    private static final String GRANT_TYPE_KEY = "grant_type";
-
     private final RestClient restClient;
     private final KeycloakProperties keycloakProperties;
     private final Terminal terminal;
+    @Getter
     private String currentAccessToken;
 
     public AuthCommands(RestClient.Builder restClientBuilder, KeycloakProperties keycloakProperties, Terminal terminal) {
@@ -30,7 +32,8 @@ public class AuthCommands {
         this.terminal = terminal;
     }
 
-    @ShellMethod(key = "login", value = "Initiates Keycloak Device Authorization Grant flow.")
+
+    @Command(command = "login", description = "Login using device flow, through Keycloak")
     public String login() {
         DeviceAuthResponse deviceAuthResponse = requestDeviceCode();
 
@@ -55,38 +58,19 @@ public class AuthCommands {
         }
     }
 
-    private DeviceAuthResponse requestDeviceCode() {
-        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add(CLIENT_ID_KEY, keycloakProperties.getClientId());
-        body.add(CLIENT_SECRET_KEY, keycloakProperties.getClientSecret());
-
-        try {
-            return restClient.post()
-                    .uri(keycloakProperties.getDeviceAuthEndpoint())
-                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                    .body(body)
-                    .retrieve()
-                    .body(DeviceAuthResponse.class);
-        } catch (RestClientException e) {
-            terminal.writer().printf("Ошибка запроса Device Auth: %s%n", e.getMessage());
-            terminal.writer().flush();
-            return null;
-        }
-    }
-
     private TokenResponse pollForToken(DeviceAuthResponse deviceAuthResponse) {
         long startTime = System.currentTimeMillis();
         long expiryTime = startTime + (deviceAuthResponse.expiresIn() * 1000L);
 
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add(GRANT_TYPE_KEY, "urn:ietf:params:oauth:grant-type:device_code");
-        body.add(CLIENT_ID_KEY, keycloakProperties.getClientId());
-        body.add(CLIENT_SECRET_KEY, keycloakProperties.getClientSecret());
+        body.add(RestKeys.GRANT_TYPE.toString(), "urn:ietf:params:oauth:grant-type:device_code");
+        body.add(RestKeys.CLIENT_ID.toString(), keycloakProperties.getClientId());
+        body.add(RestKeys.CLIENT_SECRET.toString(), keycloakProperties.getClientSecret());
         body.add("device_code", deviceAuthResponse.deviceCode());
 
         while (System.currentTimeMillis() < expiryTime && !Thread.currentThread().isInterrupted()) {
             try {
-                Thread.sleep(deviceAuthResponse.interval() * 1000L);
+                Thread.sleep(deviceAuthResponse.interval() * 1000L); //TODO: to find another way to poll token
 
                 return restClient.post()
                         .uri(keycloakProperties.getTokenEndpoint())
@@ -115,48 +99,22 @@ public class AuthCommands {
         return null;
     }
 
-    @ShellMethod(key = "vacancy-provider connect hh", value = "Exchanges the Keycloak token for a HeadHunter access token.")
-    //TODO: separate by namespaces
-    public String getHHToken() {
-        if (this.currentAccessToken == null) {
-            return "❌ Сначала выполните вход (login).";
-        }
-
-        TokenResponse hhToken = exchangeTokenForJobboard(this.currentAccessToken, "hh-oauth2");
-
-        if (hhToken != null) {
-            return "%n✅ Успешно! HeadHunter Access Token получен. %s".formatted(hhToken);
-        } else {
-            return "\n❌ Не удалось получить токен HeadHunter. Убедитесь, что аккаунт связан.";
-        }
-    }
-
-    public TokenResponse exchangeTokenForJobboard(String keycloakAccessToken, String jobboardAlias) {
-        String requestedResource = keycloakProperties.getJobboardResourceEndpoint(jobboardAlias);
+    private DeviceAuthResponse requestDeviceCode() {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-
-        body.add(GRANT_TYPE_KEY, "urn:ietf:params:oauth:grant-type:token-exchange");
-        body.add(CLIENT_ID_KEY, keycloakProperties.getClientId());
-        body.add(CLIENT_SECRET_KEY, keycloakProperties.getClientSecret());
-        body.add("subject_token", keycloakAccessToken);
-        body.add("subject_token_type", "urn:ietf:params:oauth:token-type:access_token");
-        body.add("requested_token_type", "urn:ietf:params:oauth:token-type:access_token");
-        body.add("resource", requestedResource);
+        body.add(RestKeys.CLIENT_ID.toString(), keycloakProperties.getClientId());
+        body.add(RestKeys.CLIENT_SECRET.toString(), keycloakProperties.getClientSecret());
 
         try {
             return restClient.post()
-                    .uri(keycloakProperties.getTokenEndpoint())
+                    .uri(keycloakProperties.getDeviceAuthEndpoint())
                     .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                     .body(body)
                     .retrieve()
-                    .body(TokenResponse.class);
+                    .body(DeviceAuthResponse.class);
         } catch (RestClientException e) {
-            terminal.writer().printf("❌ Ошибка при обмене токена на %s: %s", jobboardAlias, e.getMessage());
+            terminal.writer().printf("Ошибка запроса Device Auth: %s%n", e.getMessage());
             terminal.writer().flush();
             return null;
         }
-    }
-
-    private static class ShellTokenPendingException extends RuntimeException {
     }
 }
