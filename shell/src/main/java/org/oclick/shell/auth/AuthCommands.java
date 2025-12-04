@@ -15,6 +15,10 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+
 @Command(
         command = "auth",
         group = "Auth"
@@ -70,7 +74,8 @@ public class AuthCommands {
 
         while (System.currentTimeMillis() < expiryTime && !Thread.currentThread().isInterrupted()) {
             try {
-                Thread.sleep(deviceAuthResponse.interval() * 1000L); //TODO: to find another way to poll token
+                CompletableFuture.runAsync(() -> {
+                }, CompletableFuture.delayedExecutor(deviceAuthResponse.interval(), TimeUnit.SECONDS)).get();
 
                 return restClient.post()
                         .uri(keycloakProperties.getTokenEndpoint())
@@ -85,9 +90,13 @@ public class AuthCommands {
             } catch (ShellTokenPendingException e) {
                 terminal.writer().print(".");
                 terminal.writer().flush();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                terminal.writer().print("\n🚫 Опрос токена прерван пользователем (Ctrl+C).");
+            } catch (InterruptedException | ExecutionException e) {
+                if (e instanceof InterruptedException) {
+                    Thread.currentThread().interrupt();
+                    terminal.writer().print("\n🚫 Опрос токена прерван пользователем (Ctrl+C).");
+                } else {
+                    terminal.writer().printf("%n🚫 Ошибка во время ожидания: %s", e.getMessage());
+                }
                 terminal.writer().flush();
                 return null;
             } catch (RestClientException e) {
